@@ -1,0 +1,4 @@
+cd /path/to/directory
+find . -type f -exec md5sum {} + > checksums.txt
+sort checksums.txt | uniq -w 32 -d --all-repeated=separate | cut -c 35- > duplicates.txt
+xargs -d '\n' rm < duplicates.txt
